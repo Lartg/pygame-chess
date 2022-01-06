@@ -22,7 +22,6 @@ def main():
     
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
-            print(chess.return_board_position(pygame.mouse.get_pos()))
             for piece in pieces:
               if piece.position == chess.return_board_position(pygame.mouse.get_pos()):
                 step1 = True
