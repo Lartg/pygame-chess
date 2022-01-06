@@ -1,7 +1,7 @@
 import pygame
 from pygame.constants import MOUSEBUTTONDOWN, MOUSEBUTTONUP
 from board import board
-from pieces import Piece, Pawn, King
+from pieces import Piece, Pawn, King, Rook, Bishop
 from standard_setup import standard_setup
 
 pygame.init()
@@ -12,30 +12,31 @@ def main():
   chess = board()
   chess.draw_board_squares(screen)
   pieces = standard_setup
-  
+  selected_piece = ''
   pygame.display.flip()
   running = True
   step1 = False
-  
-  while running:
-    for piece in pieces:
+  for piece in pieces:
       piece.render_piece(screen)
+  while running:
+    
     for event in pygame.event.get():
-      for piece in pieces:
         if event.type == MOUSEBUTTONDOWN:
-            if piece.position == chess.return_board_position(pygame.mouse.get_pos()):
-              step1 = True
-            pass
+            print(chess.return_board_position(pygame.mouse.get_pos()))
+            for piece in pieces:
+              if piece.position == chess.return_board_position(pygame.mouse.get_pos()):
+                step1 = True
+                selected_piece = piece
         if event.type == MOUSEBUTTONUP:
           if step1 == True:
-            print('step2')
-            piece.position = chess.return_board_position(pygame.mouse.get_pos())
-            piece.render_piece(screen)
-            chess.draw_board_squares(screen)
+            selected_piece.move(chess, screen)
             step1 = False
-          pass
-      if event.type == pygame.QUIT:
-        running = False
+            selected_piece = ''
+            for piece in pieces:
+              piece.render_piece(screen)
+            pass
+    if event.type == pygame.QUIT:
+      running = False
     pygame.display.update(200,0,500,500)
     
     

@@ -25,17 +25,45 @@ class Piece():
   def render_piece(self, screen):
     screen.blit(self.image, (self.position[0]-25, self.position[1]-25))
     pass
-  def move(self, board):
+
+
+class Pawn(Piece):
+  def move():
+    pass
+  def promote_pawn():
+    pass
+  pass
+
+class Bishop(Piece):
+  def move(self, board, screen):
     self.position = board.return_board_position(pygame.mouse.get_pos())
+    self.render_piece(screen)
+    board.draw_board_squares(screen)
     pass
-  def check_capture(self):
-    pass
+  pass
 
 
-class Pawn():
-  def __init__(self):
+class Knight(Piece):
+  def move():
     pass
+  pass
 
-class King():
-  def __init__(self):
-      pass
+class Rook(Piece):
+  def move(self, board, screen):
+    self.position = board.return_board_position(pygame.mouse.get_pos())
+    self.render_piece(screen)
+    board.draw_board_squares(screen)
+    pass
+  pass
+
+class Queen(Piece):
+  def move():
+    pass
+  pass
+
+class King(Piece):
+  def move():
+    pass
+  def check():
+    pass
+  pass
