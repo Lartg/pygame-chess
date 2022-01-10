@@ -32,7 +32,6 @@ def main():
             selected_piece.move(pieces, chess, screen)
             for piece in pieces:
               if piece != selected_piece and piece.position == selected_piece.position:
-                
                 if 'w' in selected_piece.name and 'w' in piece.name:
                   selected_piece.position = old_position
                 elif 'b' in selected_piece.name and 'b' in piece.name:
