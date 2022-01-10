@@ -37,20 +37,38 @@ class Pawn(Piece):
           self.position = board.return_board_position(pygame.mouse.get_pos())
           self.render_piece(screen)
           board.draw_board_squares(screen)
+          return
       elif translation[0] == 0 and translation[1] == board.square_size:
         self.position = board.return_board_position(pygame.mouse.get_pos())
         self.render_piece(screen)
         board.draw_board_squares(screen)
+        return
+      elif translation == [50,50] or translation == [-50, 50]:
+        for piece in pieces:
+          if piece != self and piece.position == new_position:
+            self.position = board.return_board_position(pygame.mouse.get_pos())
+            self.render_piece(screen)
+            board.draw_board_squares(screen)
+        return
     if 'b' in self.name:
       if self.position[1] < 2*board.square_size:
         if translation[0] == 0 and translation[1] == -board.square_size or translation[0] == 0 and translation[1] == -2*board.square_size:
           self.position = board.return_board_position(pygame.mouse.get_pos())
           self.render_piece(screen)
           board.draw_board_squares(screen)
+          return
       elif translation[0] == 0 and translation[1] == -board.square_size:
         self.position = board.return_board_position(pygame.mouse.get_pos())
         self.render_piece(screen)
         board.draw_board_squares(screen)
+        return
+      elif translation == [50,-50] or translation == [-50, -50]:
+        for piece in pieces:
+          if piece != self and piece.position == new_position:
+            self.position = board.return_board_position(pygame.mouse.get_pos())
+            self.render_piece(screen)
+            board.draw_board_squares(screen)
+        return
       
   def promote_pawn():
     pass
