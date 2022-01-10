@@ -33,13 +33,11 @@ def main():
             for piece in pieces:
               if piece != selected_piece and piece.position == selected_piece.position:
                 
-                #     if 'w' in self.name and 'w' in piece.name:
-                #       selected_piece.position = old_position
-                #       return
-                #     elif 'b' in self.name and 'b' in piece.name:
-                #       selected_piece.position = sold_position
-                #       return
-                if 'w' in piece.name and 'b' in selected_piece.name:                 
+                if 'w' in selected_piece.name and 'w' in piece.name:
+                  selected_piece.position = old_position
+                elif 'b' in selected_piece.name and 'b' in piece.name:
+                  selected_piece.position = old_position
+                elif 'w' in piece.name and 'b' in selected_piece.name:                 
                     pieces.remove(piece)
                 elif 'b' in piece.name and 'w' in selected_piece.name:
                     pieces.remove(piece)
