@@ -28,7 +28,7 @@ class Piece():
 
 
 class Pawn(Piece):
-  def move(self, board, screen):
+  def move(self, pieces, board, screen):
     new_position = board.return_board_position(pygame.mouse.get_pos())
     translation = [self.position[0] - new_position[0], self.position[1] - new_position[1]]
     if 'w' in self.name:
@@ -57,7 +57,7 @@ class Pawn(Piece):
   pass
 
 class Bishop(Piece):
-  def move(self, board, screen):
+  def move(self, pieces, board, screen):
     new_position = board.return_board_position(pygame.mouse.get_pos())
     translation = [self.position[0] - new_position[0], self.position[1] - new_position[1]]
     if translation[0] != 0 and translation[1] != 0:
@@ -72,7 +72,7 @@ class Bishop(Piece):
 
 
 class Knight(Piece):
-  def move(self, board, screen):
+  def move(self, pieces, board, screen):
     new_position = board.return_board_position(pygame.mouse.get_pos())
     translation = [self.position[0] - new_position[0], self.position[1] - new_position[1]]
     if translation[1] == 2*board.square_size or translation[1] == -2*board.square_size:
@@ -89,7 +89,7 @@ class Knight(Piece):
   pass
 
 class Rook(Piece):
-  def move(self, board, screen):
+  def move(self, pieces, board, screen):
     new_position = board.return_board_position(pygame.mouse.get_pos())
     if self.position == new_position:
       return
@@ -105,7 +105,7 @@ class Rook(Piece):
     pass
   pass
 class Queen(Piece):
-  def move(self, board, screen):
+  def move(self, pieces, board, screen):
     new_position = board.return_board_position(pygame.mouse.get_pos())
     translation = [self.position[0] - new_position[0], self.position[1] - new_position[1]]
     if translation[0] != 0 and translation[1] != 0:
@@ -129,7 +129,7 @@ class Queen(Piece):
     return
 
 class King(Piece):
-  def move(self, board, screen):
+  def move(self, pieces, board, screen):
     new_position = board.return_board_position(pygame.mouse.get_pos())
     translation = [self.position[0] - new_position[0], self.position[1] - new_position[1]]
     if translation[0] <= 50 and translation[0] >= -50:

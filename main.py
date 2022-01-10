@@ -28,7 +28,21 @@ def main():
                 selected_piece = piece
         if event.type == MOUSEBUTTONUP:
           if step1 == True:
-            selected_piece.move(chess, screen)
+            old_position = selected_piece.position
+            selected_piece.move(pieces, chess, screen)
+            for piece in pieces:
+              if piece != selected_piece and piece.position == selected_piece.position:
+                
+                #     if 'w' in self.name and 'w' in piece.name:
+                #       selected_piece.position = old_position
+                #       return
+                #     elif 'b' in self.name and 'b' in piece.name:
+                #       selected_piece.position = sold_position
+                #       return
+                if 'w' in piece.name and 'b' in selected_piece.name:                 
+                    pieces.remove(piece)
+                elif 'b' in piece.name and 'w' in selected_piece.name:
+                    pieces.remove(piece)
             step1 = False
             selected_piece = ''
             for piece in pieces:
