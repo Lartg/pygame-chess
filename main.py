@@ -16,16 +16,19 @@ def main():
   pygame.display.flip()
   running = True
   step1 = False
+  turn = 1
   for piece in pieces:
       piece.render_piece(screen)
   while running:
-    
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
             for piece in pieces:
               if piece.position == chess.return_board_position(pygame.mouse.get_pos()):
-                step1 = True
                 selected_piece = piece
+                if turn % 2 == 0 and 'b' in selected_piece.name:
+                  step1 = True              
+                elif turn % 2 != 0 and 'w' in selected_piece.name:
+                  step1 = True            
         if event.type == MOUSEBUTTONUP:
           if step1 == True:
             old_position = selected_piece.position
@@ -41,10 +44,12 @@ def main():
                 elif 'b' in piece.name and 'w' in selected_piece.name:
                     pieces.remove(piece)
             step1 = False
+            if selected_piece.position != old_position:
+              turn += 1
             selected_piece = ''
             for piece in pieces:
               piece.render_piece(screen)
-            pass
+            
     if event.type == pygame.QUIT:
       running = False
     pygame.display.update(200,0,500,500)
