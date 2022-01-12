@@ -3,7 +3,7 @@ from pygame.constants import MOUSEBUTTONDOWN, MOUSEBUTTONUP
 from board import board
 from pieces import Piece, Pawn, King, Rook, Bishop
 from standard_setup import standard_setup
-from loggers import run_b_clock, run_clocks
+from loggers import run_clocks
 
 pygame.init()
 
@@ -65,10 +65,10 @@ def main():
       b_time -= dt  
     else:
       w_time -= dt
-    print(w_time, b_time)
+    
     dt = clock.tick(30)/1000
-    run_clocks(w_time, background_color, screen)
-    run_b_clock(b_time, background_color, screen)
+    run_clocks(w_time, b_time, background_color, screen)
+    
       
     pygame.display.update(200,0,500,500)
     
