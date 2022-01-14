@@ -1,6 +1,7 @@
 import pygame
 from board import board
 from pygame.constants import MOUSEBUTTONDOWN, MOUSEBUTTONUP
+
 images = {
   'wP': 'Sprites/whitePawn.png',
   'bP':'Sprites/blackPawn.png',
@@ -15,6 +16,11 @@ images = {
   'wQ':'Sprites/whiteQueen.png',
   'bQ':'Sprites/blackQueen.png'
 }
+
+
+
+
+
 
 class Piece():
   def __init__(self, name, positionX, positionY):
@@ -38,14 +44,17 @@ class Pawn(Piece):
             if piece != self and piece.position == new_position:
               return 
           self.position = board.return_board_position(pygame.mouse.get_pos())
+         
           self.render_piece(screen)
           board.draw_board_squares(screen)
           return
       elif translation[0] == 0 and translation[1] == board.square_size:
         for piece in pieces:
             if piece != self and piece.position == new_position:
-              return 
+              return
+        
         self.position = board.return_board_position(pygame.mouse.get_pos())
+      
         self.render_piece(screen)
         board.draw_board_squares(screen)
         return
@@ -53,6 +62,7 @@ class Pawn(Piece):
         for piece in pieces:
           if piece != self and piece.position == new_position:
             self.position = board.return_board_position(pygame.mouse.get_pos())
+           
             self.render_piece(screen)
             board.draw_board_squares(screen)
         return
@@ -63,6 +73,7 @@ class Pawn(Piece):
             if piece != self and piece.position == new_position:
               return 
           self.position = board.return_board_position(pygame.mouse.get_pos())
+          
           self.render_piece(screen)
           board.draw_board_squares(screen)
           return
@@ -71,6 +82,7 @@ class Pawn(Piece):
             if piece != self and piece.position == new_position:
               return 
         self.position = board.return_board_position(pygame.mouse.get_pos())
+        
         self.render_piece(screen)
         board.draw_board_squares(screen)
         return
@@ -78,12 +90,15 @@ class Pawn(Piece):
         for piece in pieces:
           if piece != self and piece.position == new_position:
             self.position = board.return_board_position(pygame.mouse.get_pos())
+            
             self.render_piece(screen)
             board.draw_board_squares(screen)
         return
-      
-  def promote_pawn():
+  def promote(self, selected_piece, pieces):
+    
     pass
+      
+  
   pass
 
 class Bishop(Piece):
@@ -263,11 +278,47 @@ class Queen(Piece):
       board.draw_board_squares(screen)
       pass
     pass
-    
+
+
+
 class King(Piece):
   def move(self, pieces, board, screen):
     new_position = board.return_board_position(pygame.mouse.get_pos())
     translation = [self.position[0] - new_position[0], self.position[1] - new_position[1]]
+    if self.position == [475, 375] and 'w' in self.name:
+        if new_position[0] == 575 and new_position[1] == 375:
+          for piece in pieces:
+              if piece.name == 'wR' and piece.position == [625,375]:
+                piece.position = [525,375]
+                self.position = board.return_board_position(pygame.mouse.get_pos())
+                self.render_piece(screen)
+                board.draw_board_squares(screen)
+                return
+        elif new_position[0] == 375 and new_position[1] == 375:
+          for piece in pieces:
+              if piece.name == 'wR' and piece.position == [275,375]:
+                piece.position = [425,375]
+                self.position = board.return_board_position(pygame.mouse.get_pos())
+                self.render_piece(screen)
+                board.draw_board_squares(screen)
+                return
+    if self.position == [475, 25] and 'b' in self.name:
+        if new_position[0] == 575 and new_position[1] == 25:
+          for piece in pieces:
+              if piece.name == 'bR' and piece.position == [625, 25]:
+                piece.position = [525, 25]
+                self.position = board.return_board_position(pygame.mouse.get_pos())
+                self.render_piece(screen)
+                board.draw_board_squares(screen)
+                return
+        elif new_position[0] == 375 and new_position[1] == 25:
+          for piece in pieces:
+              if piece.name == 'bR' and piece.position == [275,25]:
+                piece.position = [425,25]
+                self.position = board.return_board_position(pygame.mouse.get_pos())
+                self.render_piece(screen)
+                board.draw_board_squares(screen)
+                return
     if translation[0] <= 50 and translation[0] >= -50:
       if translation[1] <= 50 and translation[1] >= -50:
         if translation[0] != 0 or translation[1]!= 0:
@@ -279,3 +330,4 @@ class King(Piece):
   def check():
     pass
   pass
+

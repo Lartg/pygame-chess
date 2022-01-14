@@ -1,9 +1,9 @@
 import pygame
 from pygame.constants import MOUSEBUTTONDOWN, MOUSEBUTTONUP
 from board import board
-from pieces import Piece, Pawn, King, Rook, Bishop
+from pieces import Queen
 from standard_setup import standard_setup
-from loggers import run_clocks
+from loggers import run_clocks, count_material, log_moves
 
 pygame.init()
 
@@ -14,6 +14,9 @@ def main():
   chess = board()
   chess.draw_board_squares(screen)
   pieces = standard_setup
+  w_captures = []
+  b_captures = []
+  moves = []
   selected_piece = ''
   pygame.display.flip()
   running = True
@@ -26,7 +29,7 @@ def main():
   for piece in pieces:
       piece.render_piece(screen)
   while running:
-    
+    count_material(w_captures, b_captures, screen)
     for event in pygame.event.get():
       if event.type == MOUSEBUTTONDOWN:
         for piece in pieces:
@@ -48,11 +51,21 @@ def main():
                 selected_piece.position = old_position
               elif 'w' in piece.name and 'b' in selected_piece.name:                 
                   pieces.remove(piece)
+                  b_captures.append(piece)
+                  
               elif 'b' in piece.name and 'w' in selected_piece.name:
                   pieces.remove(piece)
+                  w_captures.append(piece)
+                  
           step1 = False
           if selected_piece.position != old_position:
+            log_moves(screen, background_color, selected_piece, turn, moves)
             turn += 1
+          if 'P' in selected_piece.name:
+            if ('b' in selected_piece.name and selected_piece.position[1] > 360) or ('w' in selected_piece.name and selected_piece.position[1] < 50):
+              promoted_pawn = Queen(f'{selected_piece.name[0]}Q', selected_piece.position[0], selected_piece.position[1])
+              pieces.remove(selected_piece)
+              pieces.append(promoted_pawn)
           selected_piece = ''
           for piece in pieces:
             piece.render_piece(screen)
@@ -61,9 +74,9 @@ def main():
         running = False
       pygame.display.update(200,0,500,500)
       
-    if turn % 2 == 0:
+    if turn % 2 == 0 and b_time > 0:
       b_time -= dt  
-    else:
+    elif turn % 2 != 0 and w_time > 0:
       w_time -= dt
     
     dt = clock.tick(30)/1000
