@@ -25,9 +25,9 @@ Download the zip, unpack, and run the main. Any of the popular sites for playing
 <!-- ROADMAP -->
 ## Roadmap
 
-- [] Move clocks
-- [] Move log
-- [] Material count
+-  Move clocks
+-  Move log
+-  Material count
 
 
 <!-- MY EXPERIENCE -->
