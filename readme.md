@@ -37,7 +37,7 @@ When I first started this project, it seemed overwhelming. But I was able to bre
 I started by simply drawing the board, and returning a square on click. That was actually more difficult than any of the other things I did, because that task reuired the most learning from pygame. But once I finished the board, everything else seemed much easier as I was focusing on how the rules of the game would translate into code, the exercise I was excited about. I took away that it's harder to get the ball rolling than to keep it going.
 
 ### Was I successful?
-I would say so-so. I succeeded in my goals, but I know that I constructed this project inefficiently, and there's plenty of room for optimization, especially if I want to leanrn about constructing an engine.
+I would say so-so. I succeeded in my goals, but I know that I constructed this project inefficiently, and there's plenty of room for optimization, especially if I want to learn about constructing an engine.
 
 ### What's Next for Future Chess Projects
 1. Code optimization
