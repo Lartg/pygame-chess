@@ -1,7 +1,7 @@
 <h3 align="center">Chess with Pygame</h3>
 
   <p align="center">
-    A simple chess app begginning my hobby pf chess programming.
+    A simple chess app begginning my hobby of chess programming.
     <br />
 </div>
 
